@@ -116,12 +116,12 @@ namespace Haraba.GoProxy
                 var payload = JsonConvert.SerializeObject(this);
                 var buffer = Encoding.UTF8.GetBytes(payload);
             
-                await using var requestStream = request.GetRequestStream();
+                using var requestStream = request.GetRequestStream();
                 await requestStream.WriteAsync(buffer, 0, buffer.Length);
 
 
                 using var response = request.GetResponse();
-                await using var responseStream = response.GetResponseStream();
+                using var responseStream = response.GetResponseStream();
                 using var responseStreamReader = new StreamReader(responseStream);
                 
                 var goHttpResponse = JsonConvert.DeserializeObject<GoHttpResponse>(await responseStreamReader.ReadToEndAsync());
@@ -216,9 +216,9 @@ namespace Haraba.GoProxy
 
         public GoHttpRequest WithHeaders(Dictionary<string, string> headers)
         {
-            foreach (var (key, value) in headers)
+            foreach (var kvp in headers)
             {
-                Headers.AddOrUpdate(key, value);
+                Headers.AddOrUpdate(kvp.Key, kvp.Value);
             }
 
             return this;
