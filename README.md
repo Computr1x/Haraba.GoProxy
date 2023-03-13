@@ -1,3 +1,7 @@
+Fork of [Haraba.GoProxy](https://github.com/Skyuzii/Haraba.GoProxy)  
+Downgraded TargetFramework netstandard2.1 -> netstandard2.0 for net framework 4.6 supporting
+
+---
 # Haraba.GoProxy
 Обертка для удобной работы с <a href="https://github.com/Skyuzii/SpoofingTlsFingerprint">прокси сервером Golang для обхода TLS Fingerprint</a>
 
